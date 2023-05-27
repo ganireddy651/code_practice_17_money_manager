@@ -18,9 +18,17 @@ class MoneyManager extends Component {
   state = {addTransaction: [], balance: 0, income: 0, expenses: 0}
 
   onClickDisplayAmount = event => {
+    const {addTransaction, balance, income, expenses} = this.state
     event.preventDefault()
+
+    const newTransaction = {
+      id: uuidv4(),
+      balance,
+      income,
+      expenses,
+    }
     this.setState(prevState => ({
-      balance: prevState.balance + event.target.value,
+      addTransaction: [...prevState.addTransaction, newTransaction],
     }))
   }
 
